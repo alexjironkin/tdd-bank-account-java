@@ -41,7 +41,6 @@ public class AccountTest {
     public void singleNegativeDeposit() {
         Account account = new Account();
         account.deposit(-10);
-        assertThat(account.balance()).isEqualTo(-10);
+        assertThat(account.balance()).isEqualTo(0);
     }
-
 }

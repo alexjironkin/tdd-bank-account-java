@@ -10,6 +10,9 @@ public class Account {
 
     public void deposit(int amount) {
         /* Deposit an amount to the account */
-        balance += amount;
+        if (amount > 0) {
+            balance += amount;
+        }
+
     }
 }
