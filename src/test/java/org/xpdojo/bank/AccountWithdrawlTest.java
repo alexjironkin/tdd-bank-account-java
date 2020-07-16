@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 public class AccountWithdrawlTest {
     @Test
-    public void singleWithdrawl() {
+    public void singleWithdraw() {
         Account account = new Account();
         account.deposit(20);
-        account.withdrawl(10);
+        account.withdraw(10);
 
         assertThat(account.balance()).isEqualTo(10);
     }
@@ -19,7 +19,7 @@ public class AccountWithdrawlTest {
     public void notEnoughFunds() {
         Account account = new Account();
         account.deposit(10);
-        account.withdrawl(11);
+        account.withdraw(11);
         assertThat(account.balance()).isEqualTo(10);
     }
 
@@ -27,7 +27,7 @@ public class AccountWithdrawlTest {
     public void withdrawNegativeAmount() {
         Account account = new Account();
         account.deposit(10);
-        account.withdrawl(-1);
+        account.withdraw(-1);
         assertThat(account.balance()).isEqualTo(10);
     }
 }

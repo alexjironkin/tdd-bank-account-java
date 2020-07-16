@@ -15,7 +15,7 @@ public class Account {
         }
     }
 
-    public void withdrawl(int amount) {
+    public void withdraw(int amount) {
         /* Withdraw amount */
         if (balance >= amount && amount > 0) {
             balance -= amount;
