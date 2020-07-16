@@ -1,6 +1,8 @@
 package org.xpdojo.bank;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +15,7 @@ public class AccountDepositTest {
     }
 
     @Test
-    public void multipleDeposits() {
+    public void Deposits() {
         Account account = new Account();
         account.deposit(10);
         account.deposit(10);
