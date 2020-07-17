@@ -6,6 +6,9 @@ import org.junit.jupiter.api.AfterEach;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * I can Withdraw money from accounts
  * I can Transfer amounts between accounts (if I have the funds)
  * I can print out an Account balance slip (date, time, balance)
- * TODO: I can print a statement of account activity (statement)
+ * I can print a statement of account activity (statement)
  * TODO: I can apply Statement filters (include just deposits, withdrawal, date)
  */
 
@@ -69,5 +72,23 @@ public class AccountTest {
         assertThat(outputStr.length()).isEqualTo(22);
         /* If only I could do outputStr[:-2] */
         assertThat(outputStr.substring(outputStr.length()-2)).isEqualTo("42");
+    }
+
+    @Test
+    public void printStatements() {
+        Account account = new Account();
+        account.deposit(10);
+        account.withdraw(10);
+
+        account.printStatement();
+
+        /* list(outContent) <- this is how list should be created with iterable */
+        List<String> outputStr = Arrays.asList(outContent.toString().split("\\n"));
+        outputStr.replaceAll(String::trim);
+        List<String> expected = new ArrayList<String>();
+        expected.add("10");
+        expected.add("-10");
+        assertThat(outputStr).isEqualTo(expected);
+
     }
 }

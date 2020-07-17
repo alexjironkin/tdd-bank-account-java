@@ -2,9 +2,12 @@ package org.xpdojo.bank;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
     private int balance;
+    private List<String> transactions = new ArrayList<>();
 
     public Account() {
         this(0);
@@ -24,6 +27,7 @@ public class Account {
         /* Deposit an amount to the account */
         if (amount > 0) {
             balance += amount;
+            transactions.add(Integer.toString(amount));
         }
     }
 
@@ -31,6 +35,7 @@ public class Account {
         /* Withdraw amount */
         if (balance >= amount && amount > 0) {
             balance -= amount;
+            transactions.add("-" + amount);
         }
     }
 
@@ -46,6 +51,10 @@ public class Account {
         LocalDateTime now = LocalDateTime.now();
 
         System.out.println(formatter.format(now) + " " + balance);
+    }
+
+    public void printStatement() {
+        System.out.println(String.join("\n", transactions));
     }
 
 }
