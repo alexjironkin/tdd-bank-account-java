@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Account {
     private int balance;
@@ -55,6 +56,13 @@ public class Account {
 
     public void printStatement() {
         System.out.println(String.join("\n", transactions));
+    }
+    public void printStatement(String filter) {
+        System.out.println(
+                transactions
+                        .stream()
+                        .filter(transaction -> filter.equals("DEPOSIT") && !transaction.startsWith("-") || filter.equals("WITHDRAW") && transaction.startsWith("-"))
+                        .collect(Collectors.joining("\n")));
     }
 
 }

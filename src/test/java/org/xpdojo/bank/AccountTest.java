@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * I can Transfer amounts between accounts (if I have the funds)
  * I can print out an Account balance slip (date, time, balance)
  * I can print a statement of account activity (statement)
- * TODO: I can apply Statement filters (include just deposits, withdrawal, date)
+ * I can apply Statement filters (include just deposits, withdrawal, date)
  */
 
 
@@ -87,6 +87,44 @@ public class AccountTest {
         outputStr.replaceAll(String::trim);
         List<String> expected = new ArrayList<String>();
         expected.add("10");
+        expected.add("-10");
+        assertThat(outputStr).isEqualTo(expected);
+
+    }
+
+    @Test
+    public void printDepositStatements() {
+        Account account = new Account();
+        account.deposit(10);
+        account.withdraw(10);
+
+        String filter = "DEPOSIT";
+
+        account.printStatement(filter);
+
+        /* list(outContent) <- this is how list should be created with iterable */
+        List<String> outputStr = Arrays.asList(outContent.toString().split("\\n"));
+        outputStr.replaceAll(String::trim);
+        List<String> expected = new ArrayList<String>();
+        expected.add("10");
+        assertThat(outputStr).isEqualTo(expected);
+
+    }
+
+    @Test
+    public void printWithdrawStatements() {
+        Account account = new Account();
+        account.deposit(10);
+        account.withdraw(10);
+
+        String filter = "WITHDRAW";
+
+        account.printStatement(filter);
+
+        /* list(outContent) <- this is how list should be created with iterable */
+        List<String> outputStr = Arrays.asList(outContent.toString().split("\\n"));
+        outputStr.replaceAll(String::trim);
+        List<String> expected = new ArrayList<String>();
         expected.add("-10");
         assertThat(outputStr).isEqualTo(expected);
 
