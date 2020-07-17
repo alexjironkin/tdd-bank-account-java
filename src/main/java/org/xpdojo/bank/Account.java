@@ -30,4 +30,11 @@ public class Account {
             balance -= amount;
         }
     }
+
+    public void transfer(Account dest, int amount) {
+        if (balance >= amount && amount > 0) {
+            this.withdraw(amount);
+            dest.deposit(amount);
+        }
+    }
 }
