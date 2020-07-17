@@ -1,7 +1,16 @@
 package org.xpdojo.bank;
 
 public class Account {
-    private int balance = 0;
+    private int balance;
+
+    public Account() {
+        this(0);
+    }
+
+    public Account(int startingBalance) {
+        /* OpenAccount with positive Balance*/
+        balance = startingBalance >= 0 ? startingBalance : 0;
+    }
 
     public int balance() {
         /* Balance of the account */
